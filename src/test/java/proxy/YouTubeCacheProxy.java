@@ -19,7 +19,7 @@ public class YouTubeCacheProxy implements ThirdPartyYouTubeLib {
         this.youtubeService = new ThirdPartyYouTubeClass();
     }
     //ოვერრაიდს უკეთებს  ThirdPartyYouTubeLib მეთოდს. მხოლოდ იმ შემთხვევაში  ამატებს გადმოსაწერ ვიეოებს თუ HashMap ცარიელია
-    // სხვა შემთხვევაში აბრუნებს ქეშებში უკვე არსებულ HashMap-ს.
+    // სხვა შემთხვევაში აბრუნებს ქეშებში უკვე არსებულ HashMap-ს და რეალურ რექუესთს არ გზავნის,რითიც ზოგავს დროს.
     @Override
     public HashMap<String, Video> popularVideos() {
         if (cachePopular.isEmpty()) {
@@ -31,7 +31,7 @@ public class YouTubeCacheProxy implements ThirdPartyYouTubeLib {
     }
 
     //ოვერრაიდს უკეთებს  ThirdPartyYouTubeLib მეთოდს. ამ მეთოდშიც ვიდეოს ძებნის რექუესთი იგზავნება მხოლოდ მაშინ თუ ასეთი
-    //ვიდეო არ არის ქეშებში. სხვა შემთხვევაში ქეშებში უკვე არსებული ვიდეო ბრუნდება HashMap-იდან.
+    //ვიდეო არ არის ქეშებში. სხვა შემთხვევაში ქეშებში უკვე არსებული ვიდეო ბრუნდება HashMap-იდან და რეალურ რექუესთს არ გზავნის,რითიც ზოგავს დროს.
     @Override
     public Video getVideo(String videoId) {
         Video video = cacheAll.get(videoId);
